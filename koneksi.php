@@ -2,10 +2,10 @@
 // File: koneksi.php
 
 // DATA DARI ALWAYSDATA
-$host = "mysql-jpapi.alwaysdata.net"; // Host standar Alwaysdata
-$user = "jpapi_jakhi";         // <-- Ganti dengan nama user yang baru kamu buat (pakai awalan jpapi_)
-$pass = "jakhipasaribawa";     // <-- Ganti dengan password database yang baru
-$db   = "jpapi_db_jp";                // <-- Ganti dengan nama database yang baru (pakai awalan jpapi_)
+$host = "mysql-jpapi.alwaysdata.net"; 
+$user = "jpapi_jakhi";         
+$pass = "jakhipasaribawa";     
+$db   = "jpapi_db_jp";                
 
 // Melakukan koneksi
 $koneksi = mysqli_connect($host, $user, $pass, $db);
