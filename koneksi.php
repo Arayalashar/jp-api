@@ -1,10 +1,11 @@
 <?php
+// File: koneksi.php
 
-// DATA DARI INFINITYFREE
-$host = "sql208.infinityfree.com";
-$user = "if0_41701669";
-$pass = "AZRy77k8ac8 "; 
-$db   = "if0_41701669_db_jp";
+// DATA DARI ALWAYSDATA
+$host = "mysql-jpapi.alwaysdata.net"; // Host standar Alwaysdata
+$user = "jpapi_jakhi";         // <-- Ganti dengan nama user yang baru kamu buat (pakai awalan jpapi_)
+$pass = "jakhipasaribawa";     // <-- Ganti dengan password database yang baru
+$db   = "jpapi_db_jp";                // <-- Ganti dengan nama database yang baru (pakai awalan jpapi_)
 
 // Melakukan koneksi
 $koneksi = mysqli_connect($host, $user, $pass, $db);
@@ -17,7 +18,7 @@ if (!$koneksi) {
     ]));
 }
 
-// WAJIB DITAMBAHKAN AGAR FLUTTER BISA MEMBACA DATANYA
+// SURAT IZIN CORS (Wajib ada!)
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json; charset=UTF-8");
