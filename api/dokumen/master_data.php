@@ -1,10 +1,9 @@
 <?php
-// Izinkan akses CORS untuk Flutter Web
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: GET");
 
-require 'koneksi.php';
+require '../../config/database.php';
 
 // 1. Ambil Data Supir
 $query_supir = "SELECT id_user, nama_lengkap FROM users WHERE role = 'supir'";
@@ -22,7 +21,6 @@ while ($row = mysqli_fetch_assoc($result_barang)) {
     $data_barang[] = $row;
 }
 
-// Kirimkan sebagai JSON
 echo json_encode([
     "status" => "success",
     "data_supir" => $data_supir,

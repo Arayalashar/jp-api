@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: GET");
 
-require 'koneksi.php';
+require '../../config/database.php';
 
 // 1. Ambil Summary (Ringkasan)
 $q_total = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(*) as total FROM dokumen"));
@@ -25,6 +25,9 @@ $query_detail = "
         d.status_pengiriman, 
         d.tanggal_buat,
         u.nama_lengkap AS nama_supir,
+        b.kode_barang,
+        b.nama_barang,
+        dd.jumlah_packing AS jumlah,
         
         -- Mengambil waktu_update terakhir dari tabel tracking_pengiriman
         (SELECT t.waktu_update 
@@ -34,6 +37,8 @@ $query_detail = "
          
     FROM dokumen d
     LEFT JOIN users u ON d.id_supir = u.id_user
+    LEFT JOIN detail_dokumen dd ON d.id_dokumen = dd.id_dokumen
+    LEFT JOIN barang b ON dd.id_barang = b.id_barang
     ORDER BY d.tanggal_buat DESC
 ";
 

@@ -12,20 +12,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 // 3. SETELAH AMAN, LANJUTKAN PROSES LOGIN
 header("Content-Type: application/json; charset=UTF-8");
-require 'koneksi.php';
+require '../../config/database.php';
 
 // Menangkap data JSON
 $data = json_decode(file_get_contents("php://input"));
 
 if(isset($data->username) && isset($data->password)) {
-    $username = mysqli_real_escape_string($koneksi, $data->username);
-    $password = $data->password;
+    // FIX BUG: Menggunakan Prepared Statements untuk mencegah SQL Injection
+    $stmt = $koneksi->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
+    $stmt->bind_param("ss", $data->username, $data->password);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-    $result = mysqli_query($koneksi, $query);
-
-    if (mysqli_num_rows($result) === 1) {
-        $row = mysqli_fetch_assoc($result);
+    if ($result->num_rows === 1) {
+        $row = $result->fetch_assoc();
         echo json_encode([
             "status" => "success",
             "message" => "Login berhasil",
@@ -38,6 +38,7 @@ if(isset($data->username) && isset($data->password)) {
     } else {
         echo json_encode(["status" => "error", "message" => "Username atau password salah"]);
     }
+    $stmt->close();
 } else {
     echo json_encode(["status" => "error", "message" => "Data tidak lengkap"]);
 }
