@@ -1,11 +1,11 @@
 <?php
 // File: config/database.php
 
-// PENGATURAN LOCALHOST (XAMPP)
-$host = "localhost"; 
-$user = "root";         
-$pass = "";     
-$db   = "db_jp"; // Pastikan Anda sudah mengimpor db_jp.sql di phpMyAdmin lokal Anda!               
+// PENGATURAN INFINITYFREE
+$host = "sql312.infinityfree.com"; 
+$user = "if0_42895789";         
+$pass = "jakhi1112";     
+$db   = "if0_42895789_db_jp";               
 
 // Melakukan koneksi
 $koneksi = mysqli_connect($host, $user, $pass, $db);
@@ -14,7 +14,7 @@ $koneksi = mysqli_connect($host, $user, $pass, $db);
 if (!$koneksi) {
     die(json_encode([
         "status" => "error", 
-        "message" => "Gagal terhubung ke database lokal: " . mysqli_connect_error()
+        "message" => "Gagal terhubung ke database: " . mysqli_connect_error()
     ]));
 }
 

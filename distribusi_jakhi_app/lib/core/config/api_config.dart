@@ -5,11 +5,11 @@ class ApiConfig {
   // Base URL diubah ke domain InfinityFree untuk Production
   static String get baseUrl {
     if (kIsWeb) {
-      return 'http://jakhi-pasaribawa.free.je';
+      return 'https://jakhi-pasaribawa.free.je';
     } else if (Platform.isAndroid) {
-      return 'http://jakhi-pasaribawa.free.je';
+      return 'https://jakhi-pasaribawa.free.je';
     } else {
-      return 'http://jakhi-pasaribawa.free.je';
+      return 'https://jakhi-pasaribawa.free.je';
     }
   }
 
