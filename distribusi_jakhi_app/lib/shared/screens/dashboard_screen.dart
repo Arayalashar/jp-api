@@ -330,56 +330,63 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget _buildChart(BuildContext context) {
     String roleLabel = _getRoleLabel();
     String title = "Dashboard Utama";
-    IconData icon = Icons.dashboard_rounded;
     final r = _getNormalizedRole();
-    if (r == 'gudang') { title = "Kelola Packing"; icon = Icons.inventory_2_rounded; }
-    else if (r == 'spv') { title = "Kelola Supervisi"; icon = Icons.fact_check_rounded; }
-    else if (r == 'supir') { title = "Kelola Pengiriman"; icon = Icons.local_shipping_rounded; }
+    if (r == 'gudang') { title = "Kelola Packing"; }
+    else if (r == 'spv') { title = "Kelola Supervisi"; }
+    else if (r == 'supir') { title = "Kelola Pengiriman"; }
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFFFF9A3C), Color(0xFFFF7A00)],
+          colors: [Color(0xFFFF9A3C), Color(0xFFFF7A00), Color(0xFFE05D00)],
         ),
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.08), blurRadius: 20, offset: const Offset(0, 8))],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(roleLabel, style: const TextStyle(fontSize: 13, color: Colors.white70, fontWeight: FontWeight.w600, letterSpacing: 0.5)),
-          const SizedBox(height: 6),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: Colors.white, height: 1.2),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.2),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(icon, color: Colors.white, size: 28),
-              ),
-            ],
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: LightTheme.primary.withValues(alpha: 0.35),
+            blurRadius: 20,
+            offset: const Offset(0, 6),
           ),
-          const SizedBox(height: 16),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.25),
-              borderRadius: BorderRadius.circular(20),
+        ],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(roleLabel, style: const TextStyle(fontSize: 11, color: Colors.white70, fontWeight: FontWeight.w600, letterSpacing: 0.5)),
+                const SizedBox(height: 4),
+                Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white)),
+                const SizedBox(height: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Text('Aktif hari ini', style: TextStyle(fontSize: 11, color: Colors.white, fontWeight: FontWeight.w600)),
+                ),
+              ],
             ),
-            child: const Text('Aktif hari ini', style: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.w700)),
+          ),
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.2),
+              shape: BoxShape.circle,
+            ),
+            child: Image.asset(
+              'assets/images/logo.png',
+              width: 32,
+              height: 32,
+              color: Colors.white,
+              colorBlendMode: BlendMode.srcIn,
+            ),
           ),
         ],
       ),

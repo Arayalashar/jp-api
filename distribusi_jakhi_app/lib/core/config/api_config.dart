@@ -2,14 +2,14 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:io' show Platform;
 
 class ApiConfig {
-  // Secara cerdas menentukan Base URL berdasarkan platform yang sedang berjalan
+  // Base URL diubah ke domain InfinityFree untuk Production
   static String get baseUrl {
     if (kIsWeb) {
-      return 'http://localhost/JP';
+      return 'http://jakhi-pasaribawa.free.je';
     } else if (Platform.isAndroid) {
-      return 'http://10.0.2.2/JP';
+      return 'http://jakhi-pasaribawa.free.je';
     } else {
-      return 'http://localhost/JP';
+      return 'http://jakhi-pasaribawa.free.je';
     }
   }
 

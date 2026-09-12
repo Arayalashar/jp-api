@@ -3,7 +3,7 @@ import '../theme/light_theme.dart';
 
 class CustomSnackbar {
   static void show(BuildContext context, String message, {bool isError = false}) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).clearSnackBars();
     final color = isError ? const Color(0xFFEF4444) : LightTheme.success;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -42,9 +42,9 @@ class CustomSnackbar {
         duration: const Duration(seconds: 3),
         action: SnackBarAction(
           label: 'TUTUP',
-          textColor: LightTheme.textTertiary,
+          textColor: color,
           onPressed: () {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).clearSnackBars();
           },
         ),
       ),
